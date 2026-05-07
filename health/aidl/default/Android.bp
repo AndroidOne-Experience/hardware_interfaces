@@ -61,6 +61,8 @@ cc_defaults {
     static_libs: [
         // common
         "libbatterymonitor",
+        "libbootloader_message",
+        "libfstab",
         "libhealthloop",
 
         // charger UI only
@@ -71,6 +73,14 @@ cc_defaults {
     ],
 
     target: {
+        vendor: {
+            static_libs: [
+                "libbootloader_message_vendor",
+            ],
+            exclude_static_libs: [
+                "libbootloader_message",
+            ],
+        },
         recovery: {
             // No UI and libsuspend for recovery charger.
             cflags: [
